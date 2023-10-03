@@ -44,7 +44,7 @@ FROM movies_clean_nometa
 GROUP BY director
 ORDER BY yearlygross DESC;
 
---highest grossing actor
+--highest grossing star1 actor
 SELECT
 	SUM(gross) AS yearlygross,
 	star1
