@@ -19,7 +19,48 @@ SELECT DISTINCT
 FROM movies_clean_nometa
 ORDER BY gross DESC;
 
--- Preliminary searches
+-- Highest grossing years
+
+SELECT
+	SUM(gross) AS yearlygross,
+	released_year
+FROM movies_clean_nometa
+GROUP BY released_year
+ORDER BY yearlygross DESC;
+
+--Highest Grossing Genres
+SELECT
+	SUM(gross) AS yearlygross,
+	genre
+FROM movies_clean_nometa
+GROUP BY genre
+ORDER BY yearlygross DESC;
+
+--Highest Grossing directors
+SELECT
+	SUM(gross) AS yearlygross,
+	director
+FROM movies_clean_nometa
+GROUP BY director
+ORDER BY yearlygross DESC;
+
+--highest grossing actor
+SELECT
+	SUM(gross) AS yearlygross,
+	star1
+FROM movies_clean_nometa
+GROUP BY star1
+ORDER BY yearlygross DESC;
+
+--Highest grossing imdb ratings
+SELECT
+	SUM(gross) AS yearlygross,
+	imdb_rating
+FROM movies_clean_nometa
+GROUP BY imdb_rating
+ORDER BY yearlygross DESC;
+
+-- Preliminary searches by genre
 SELECT DISTINCT
 	genre,
 	id,
@@ -67,7 +108,7 @@ SELECT DISTINCT
 FROM movies_clean_nometa
 ORDER BY gross DESC;
 
--- Genres by Dscending Gross
+-- Genres by Dscending Gross within approximate genres
 SELECT DISTINCT
 	gross,
 	genre,
