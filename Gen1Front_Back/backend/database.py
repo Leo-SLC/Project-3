@@ -48,7 +48,7 @@ def get_all_data():
         print("Error getting data:", str(e))
         return []
     
-
+    
 app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def api_get_all_imdb():
@@ -59,4 +59,4 @@ def api_get_all_imdb():
         print("Error in API:", str(e))
         return jsonify({'error': 'An error occurred'}), 500
 if __name__ == "__main__":
-    app.run(port=9090, debug=True)
+    app.run(port=8000, debug=True)

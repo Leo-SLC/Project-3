@@ -1,7 +1,7 @@
 import csv
 import sqlite3
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 
 
 # Check the current working directory
@@ -9,7 +9,7 @@ print(os.getcwd())
 
 # Connects to the SQLite database file imdb_top.db
 def connect_to_db():
-    conn = sqlite3.connect('backend/imdb_top.db')
+    conn = sqlite3.connect('imdb_top.db')
     return conn
 
 # Getting all the column names from imdb top 1000 to be used when writing to output.csv
@@ -48,7 +48,6 @@ def get_all_data():
         print("Error getting data:", str(e))
         return []
     
-
 app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def api_get_all_imdb():
@@ -59,4 +58,8 @@ def api_get_all_imdb():
         print("Error in API:", str(e))
         return jsonify({'error': 'An error occurred'}), 500
 if __name__ == "__main__":
-    app.run(port=9090, debug=True)
+    app.run(debug=True)
+
+@app.route("/")
+def index():
+    return render_template("index.html")

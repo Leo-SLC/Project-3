@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export {getFullName};
 
-const BASE_URL = '';
+const BASE_URL = 'http://127.0.0.1:8000/';
 
 //request the desired dataset from the API
 async function getDataset() { //async allows your code to run in the background without blocking the execution of other code.

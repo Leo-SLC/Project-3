@@ -1,25 +1,26 @@
 import {getDataset} from './client.js'
 
+
 function buildCharts(sample){
-    // d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json").then((data) =>{
-    //    let samples = data.samples;
-    //     let resultArray = samples.filter((sampleDictionary) => sampleDictionary.id == sample);
-    //     let result = resultArray[0];
+    d3.json("http://127.0.0.1:8000/imdb.json").then((data) =>{
+       let samples = data.samples;
+        let resultArray = samples.filter((sampleDictionary) => sampleDictionary.id == sample);
+        let result = resultArray[0];
 
 
-    //     let otuIDs =result.otu_ids;
-    //     let otuLabels = result.otu_labels;
-    //     let sampleValues = result.sample_values;
+        let otuIDs =result.otu_ids;
+        let otuLabels = result.otu_labels;
+        let sampleValues = result.sample_values;
 
-    //     let bubbleLayout = {
-    //         title: "Bacteria Cultures Per Sample",
-    //         margin: {t:0},
-    //         hovermode: "closest",
-    //         xaxis: {title: "OTU ID"},
-    //         margin: {t:30}
+        let bubbleLayout = {
+            title: "Bacteria Cultures Per Sample",
+            margin: {t:0},
+            hovermode: "closest",
+            xaxis: {title: "OTU ID"},
+            margin: {t:30}
 
-    //     };
-    // TODO Replace logic above with get dataset api request 
+        };
+    TODO Replace logic above with get dataset api request 
         let bubbleData = [
             {
                 x: otuIDs,
