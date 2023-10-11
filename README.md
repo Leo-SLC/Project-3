@@ -22,4 +22,5 @@ https://plotly.com/javascript/line-and-scatter/
 
 https://plotly.com/javascript/bubble-charts/
 https://stackoverflow.com/questions/48054164/dom-element-error
-
+https://www.geeksforgeeks.org/how-to-change-font-size-using-jquery/
+https://releases.jquery.com/
