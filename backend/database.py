@@ -39,7 +39,21 @@ def get_all_data():
         f = open('file.txt', 'r+')
         f.truncate(0) # need '0' when using r+
 
+<<<<<<< Updated upstream
         print('output.csv')
     return open('output.csv', 'r')
 
 get_all_data()
+=======
+app = Flask(__name__)
+@app.route('/', methods=['GET'])
+def api_get_all_imdb():
+    try:
+        json_data = get_all_data()
+        return jsonify(json_data)
+    except Exception as e:
+        print("Error in API:", str(e))
+        return jsonify({'error': 'An error occurred'}), 500
+if __name__ == "__main__":
+    app.run(port=5000, debug=True)
+>>>>>>> Stashed changes
