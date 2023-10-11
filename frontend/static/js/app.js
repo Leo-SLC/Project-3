@@ -1,147 +1,76 @@
-d3.json('/movies').then((data)=>{console.log(data)})
-
-// const BASE_URL = 'http://127.0.0.1:9090';
-
-// //request the desired dataset from the API
-// async function getDataset() { //async allows your code to run in the background without blocking the execution of other code.
-//     try {
-//         const response = await axios.get(`${BASE_URL}/`) //The await operator is used to wait for a Promise and get its fulfillment value. axios.get returns a promise
-
-//         const dataset = response.data; //The axios response schema contains data, status, statusText, headers, congif, and request. Data is the response
-//         return dataset;
-//         console.log(dataset);
-//     } catch (errors) {
-//         console.error(errors);
-//     }
-// }
-
-// function buildCharts(){
-//    data = getDataset();
-
-//     var highestGrossing = 
-
-//    let barLayout = {
-//     title: 'Top 10 grossing movies',
-//     margin: {t: 30, l: 150}
-//    }
-
-//    let barData = [
-//     {
-//         y: highestGrossing.get,
-//         x: gross,
-//         text:,
-//         type: "bar",
-//         orientation: "h"
-//     }
-// ]
-// Plotly.newPlot("bar", barData, barLayout);
-// }
+d3.json('/movies').then((data) => {console.log(data)})
 
 
-//function buildCharts(sample){
+function init() {
 
-    // d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json").then((data) =>{
-    //    let samples = data.samples;
-    //     let resultArray = samples.filter((sampleDictionary) => sampleDictionary.id == sample);
-    //     let result = resultArray[0];
+    // Use d3.json to load the data
+    d3.json("/movies").then((data) => {
+    // Get unique year values
+    let years = [...new Set(data.map((row) => row.Released_Year))];
+
+    years.sort().reverse();
+
+    // Select the year dropdown menu
+    let dropdown = document.getElementById("year-dropdown");
+
+    // Add options for each unique year value
+    years.forEach((year) => {
+      let option = document.createElement("option");
+      option.value = year;
+      option.text = year;
+      dropdown.appendChild(option);
+    });
 
 
-    //     let otuIDs =result.otu_ids;
-    //     let otuLabels = result.otu_labels;
-    //     let sampleValues = result.sample_values;
+    // Set the initial year to "All years"
+    let initialYear = "";
+    buildCharts(initialYear);
+  });
+}
 
-    //     let bubbleLayout = {
-    //         title: "Bacteria Cultures Per Sample",
-    //         margin: {t:0},
-    //         hovermode: "closest",
-    //         xaxis: {title: "OTU ID"},
-    //         margin: {t:30}
+  init();
 
-    //     };
-    // TODO Replace logic above with get dataset api request 
-//         let bubbleData = [
-//             {
-//                 x: otuIDs,
-//                 y: sampleValues,
-//                 text: otuLabels,
-//                 mode: "markers",
-//                 marker: {
-//                     size: sampleValues,
-//                     color: otuIDs,
-//                     colorscale: "Earth"
-//                 }
+  function buildCharts(year, seriesTitle) {
+  // Use d3.json to load the data
+  d3.json("/movies").then((data) => {
+    // Filter the data based on the selected year and series title
+    let filteredData = data.filter((row) => 
+      (year === "" || row.Released_Year === year) && 
+      (seriesTitle === "" || row.Series_Title === seriesTitle)
+    );
 
-//             }
-    
+    // Sort the filtered data by IMDb rating and get the top 10 movies
+    filteredData.sort((a, b) => b.IMDB_Rating - a.IMDB_Rating);
+    const top10 = filteredData.slice(0, 10);
 
-//         ]
+    // Create a trace for the bar chart
+    let trace = {
+      x: top10.map((row) => row.Series_Title),
+      y: top10.map((row) => row.IMDB_Rating),
+      type: "bar",
+      orientation: "v"
+    };
 
-//         Plotly.newPlot("bubble", bubbleData, bubbleLayout);
-
-//         let yticks = otuIDs.slice(0, 10).map(otuID => `OTU ${otuID}`).reverse();
-//         let barData = [
-//             {
-//                 y: yticks,
-//                 x: sampleValues.slice(0, 10).reverse(),
-//                 text:otuLabels.slice(0, 10).reverse(),
-//                 type: "bar",
-//                 orientation: "h"
-//             }
-//         ]
-
-//         let barLayout = {
-//             title: "Top 10 Bacteria Cultures Found",
-//             margin: {t: 30, l: 150}
-//         }
-
-//         Plotly.newPlot("bar", barData, barLayout);
-
-//     });
-// }
-
-// function buildMetadata(sample){
-//     d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json").then((data) =>{
-//         let metadata = data.metadata;
-
-//         let resultArray = metadata.filter((sampleDictionary) => sampleDictionary.id == sample);
-
-//         let result = resultArray[0];
-
-//         let PANEL = d3.select("#sample-metadata");
-
-//         PANEL.html("");
-
-//         for (key in result) {
-//              PANEL.append("h6").text(`${key.toUpperCase()}: ${result[key]}`)
-//         }
-
-//         // Bonus
-//         buildGauge(result.wfreq);
-//     })    
-
-// }
-
-// function init(){
-//     let selector = d3.select("#selDataset");
-
-//     d3.json("https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json").then((data) => {
-//         let sampleNames = data.names;
-
-//         for(let i = 0; i < sampleNames.length; i++){
-//           selector.append("option").text(sampleNames[i]).property("value", sampleNames[i]);
-//         }
-
-//         let firstSample = sampleNames[0];
-//         buildCharts(firstSample);
-//         buildMetadata(firstSample)
-//     })
+    // Create a layout for the bar chart
+    let layout = {
+      title: `Top Movies of the Year${year ? ` in ${year}` : ""}${seriesTitle ? ` for ${seriesTitle}` : ""}`,
+      xaxis: { title: "Title" },
+      yaxis: { title: "IMDB Rating" }
+    };
 
     
+    // Plot the bar chart
+    Plotly.newPlot("bar", [trace], layout);
+  });
+}
+
+function optionChanged(year) {
+    buildCharts(year, "");
+  }
+
+
+init();
+// function generateChart(data) {
+// // Chart code using data
 // }
 
-// function optionChanged(newSample){
-//     buildCharts(newSample);
-//     buildMetadata(newSample);
-// }
-
-// init();
