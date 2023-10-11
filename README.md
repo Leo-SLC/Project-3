@@ -1,4 +1,4 @@
-# Project-3
+d# Project-3
 Data Analytics Bootcamp - Group Project 3: Melina Tinoco, Joshua Leavitt, Jake Rohbock, Leo Antinozzi
 
 Dataset Sourced from Kaggle:
@@ -16,5 +16,9 @@ https://www.datacamp.com/tutorial/sql-like-pattern-matching-tutorial
 https://app.quickdatabasediagrams.com/#/
 
 
+https://stackoverflow.com/questions/48054164/dom-element-error
 
+https://plotly.com/javascript/line-and-scatter/
+
+https://plotly.com/javascript/bubble-charts/
 
