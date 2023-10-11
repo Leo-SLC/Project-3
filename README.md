@@ -1,4 +1,4 @@
-d# Project-3
+Project-3
 Data Analytics Bootcamp - Group Project 3: Melina Tinoco, Joshua Leavitt, Jake Rohbock, Leo Antinozzi
 
 Dataset Sourced from Kaggle:
@@ -21,4 +21,5 @@ https://stackoverflow.com/questions/48054164/dom-element-error
 https://plotly.com/javascript/line-and-scatter/
 
 https://plotly.com/javascript/bubble-charts/
+https://stackoverflow.com/questions/48054164/dom-element-error
 

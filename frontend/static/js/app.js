@@ -1,5 +1,6 @@
 // d3.json('/movies').then((data) => {console.log(data)})
 
+$('h1').css('font-size','5rem')
 
 function init() {
 
@@ -8,7 +9,7 @@ function init() {
     // Get unique year values
     let years = [...new Set(data.map((row) => row.Released_Year))];
     let Genre = [...new Set(data.map((row) => row.Genre))];
-    let Gross = [...new Set(data.map((row) => row.Gros))];
+    let Gross = [...new Set(data.map((row) => row.Gross))];
     let Star = [...new Set(data.map((row) => row.Star1))];
     years.sort().reverse();
     Genre.sort().reverse();
@@ -38,6 +39,7 @@ function init() {
   // Use d3.json to load the data
   d3.json("/movies").then((data) => {
     // Filter the data based on the selected year and series title
+    test = data
     let filteredData = data.filter((row) => 
       (year === "" || row.Released_Year === year) && 
       (seriesTitle === "" || row.Series_Title === seriesTitle)
@@ -47,7 +49,8 @@ function init() {
     // Sort the filtered data by IMDb rating and get the top 10 movies
     filteredData.sort((a, b) => b.IMDB_Rating - a.IMDB_Rating);
     const top10 = filteredData.slice(0, 10);
-
+    
+    
     // Create a trace for the bar chart
     let trace = {
       x: top10.map((row) => row.Series_Title),
@@ -86,6 +89,10 @@ function init() {
       var data = [traceGross];
       
       Plotly.newPlot('myDiv2', data, scatterlayout);
+    
+    markersize = top10.map((row) => row.Gross ? row.Gross.split(',').join('')/100000 : 0)
+    desired_maximum_marker_size = 1000
+    console.log(top10)
 
     var trace1 = {
         x: top10.map((row) => row.Genre),
@@ -93,8 +100,11 @@ function init() {
         mode: 'markers',
         text: top10.map((row) => row.Genre),
         marker: {
-          size: [400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 2200],
-          sizeref: 0.8,
+        //   size: [400, 600, 800, 1000, 1200, 1400, 1600, 1800, 2000, 220],
+        //   size: top10.map((row) => row.Gross),
+          size: markersize,
+          sizref: 2.0 * Math.max(markersize) / (desired_maximum_marker_size**2), 
+        //    sizeref: 2,
           sizemode: 'area'
         }
       };
@@ -114,6 +124,7 @@ function init() {
     
   });
 }
+
 
 function optionChanged(year) {
     buildCharts(year, "");
