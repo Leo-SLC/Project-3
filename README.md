@@ -1,6 +1,45 @@
 Project-3
 Data Analytics Bootcamp - Group Project 3: Melina Tinoco, Joshua Leavitt, Jake Rohbock, Leo Antinozzi
 
+https://www.kaggle.com/datasets/harshitshankhdhar/imdb-dataset-of-top-1000-movies-and-tv-shows 
+
+Data:
+- This dataset is an overview of a wide range of films, the data includes details in ratings, genre, - length, release dates and several other attributes that can be vital when selecting a movie/Series. 
+
+Data Tools Used:
+- SQLite for restructuring/formatting the Data.
+- HTML, CSS, and Javascript for Data presentation and modeling. The Dashboard also contains jQuery CDN code.  
+
+Important Notes regarding Data:
+- Some entries in this dataset lacked fields that were important for our analysis (e.g. Gross). 
+- Of the 1000 entries, 831 were incomplete - largely missing gross data from international films and shows - For these shows, the dashboard just populates zero. 
+- The full and unaltered dataset is noted in our Repository. 
+- This data was scraped from IMDB in 2020, or at a minimum does not have movies newer than 2020 represented. 
+
+Purpose:
+- Gain a more thorough understanding of the top movies and shows on IMDb.
+- See if certain genres persist from year to year. 
+
+Insights from Data: 
+- What movies or shows top each year for IMDB rating?
+- Which genres do these Titles represent? 
+- What did these top Titles per year (within the IMDB Top 1000) gross?
+
+Presentation of the Data:
+- Interactive Dashboard that allows the user to select different years. 
+- Chart visually shows how these top titles gross' vary from genre to genre in addition to each other. 
+
+
+What is the data?
+
+Our dataset shows the top 1000 movies based on the IMDB score they have received. Other variables that it contains is how much the movie has grossed since release, who directed the film and top 4 star actors as a part of the cast. We found this data off of Kaggle and felt we would be able to extract and clean the data in order to prepare a presentation based on the high usability rate that it has.
+
+
+
+
+
+
+
 Dataset Sourced from Kaggle:
 
 https://www.kaggle.com/datasets/harshitshankhdhar/imdb-dataset-of-top-1000-movies-and-tv-shows
