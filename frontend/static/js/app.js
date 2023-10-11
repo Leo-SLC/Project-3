@@ -1,4 +1,4 @@
-d3.json('/movies').then((data) => {console.log(data)})
+// d3.json('/movies').then((data) => {console.log(data)})
 
 
 function init() {
@@ -102,7 +102,7 @@ function init() {
       var scatterdata = [trace1];
       
       var scatterlayout = {
-        title: `Genre Bubbles Ranking for IMDB Top 1000 movies released in${year ? ` in ${year}` : ""}${seriesTitle ? ` for ${seriesTitle}` : ""}`,
+        title: `Genre Bubbles and their IMDB Ranking for IMDB Top 1000 movies released in${year ? ` in ${year}` : ""}${seriesTitle ? ` for ${seriesTitle}` : ""}`,
         x: 'Genre Categories',
         y: 'IMDB Ranking Per Genre',
         showlegend: false,
