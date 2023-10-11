@@ -35,20 +35,7 @@ def names():
     conn.close()
     return json.dumps(results_dict)
 
-    
-    # # Create our session (link) from Python to the DB
-    # session = Session(engine)
-
-    # """Return a list of all passenger names"""
-    # # Query all passengers
-    # results = session.query(Movies.unique_id).all()
-
-    # session.close()
-
-
-
-    # return (result
 
 
 if __name__ == '__main__':
-    app.run(port=8000,debug=True)
+    app.run(port=9000,debug=True)
