@@ -78,7 +78,7 @@ function init() {
       };
       
       var scatterlayout = {
-        title: "Gross Figures for Top 1000 Movies in Selected Year",
+        title: `Gross Figures for Top 1000 Movies Released in${year ? ` in ${year}` : ""}${seriesTitle ? ` for ${seriesTitle}` : ""}`,
         height: 600,
         width: 1200
       };
@@ -102,7 +102,7 @@ function init() {
       var scatterdata = [trace1];
       
       var scatterlayout = {
-        title: 'Genre Bubbles Ranking for Movies in Selected Year',
+        title: `Genre Bubbles Ranking for IMDB Top 1000 movies released in${year ? ` in ${year}` : ""}${seriesTitle ? ` for ${seriesTitle}` : ""}`,
         x: 'Genre Categories',
         y: 'IMDB Ranking Per Genre',
         showlegend: false,
