@@ -9,6 +9,7 @@ function init() {
     let years = [...new Set(data.map((row) => row.Released_Year))];
     let Genre = [...new Set(data.map((row) => row.Genre))];
     let Gross = [...new Set(data.map((row) => row.Gros))];
+    let Star = [...new Set(data.map((row) => row.Star1))];
     years.sort().reverse();
     Genre.sort().reverse();
     Gross.sort().reverse();
